@@ -48,8 +48,8 @@ const Register = () => {
         else if(password === ""){
             alert("Please enter your Password")
         }
-        else if(password < 7){
-            alert("Please enter your Password")
+        else if(password.length < 7){
+            alert("Password must be greater than 7 Char")
         }
         else if(cpassword !== password){
             alert("Your Password does not match")

@@ -40,8 +40,8 @@ const Login = () => {
         else if (password === "") {
             alert("Please enter your Password")
         }
-        else if (password < 7) {
-            alert("Please enter your Password")
+        else if (password.length < 7) {
+            alert("Password must be greater than 7 Char")
         }
         else {
             alert("User Login Successfully")
