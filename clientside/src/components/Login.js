@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     MDBInput,
     MDBCol,
@@ -8,8 +8,47 @@ import {
     MDBIcon
 } from 'mdb-react-ui-kit';
 import { Container } from '@mui/system';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
+    const [input, setInput] = useState({
+        email: "",
+        password: "",
+    })
+    function handleVal(e) {
+        const { name, value } = e.target
+        setInput(() => {
+            return {
+                ...input,
+                [name]: value
+            }
+
+        })
+    }
+
+    const handlePrevent = (e) => {
+        e.preventDefault()
+
+        const { email, password } = input
+
+        if (email === "") {
+            alert("Please enter your Email")
+        }
+        else if (!email.includes("@")) {
+            alert("Please enter your Valid Email Address")
+        }
+        else if (password === "") {
+            alert("Please enter your Password")
+        }
+        else if (password < 7) {
+            alert("Please enter your Password")
+        }
+        else {
+            alert("User Login Successfully")
+        }
+    }
+
+
     return (
         <>
             <Container style={{
@@ -18,25 +57,25 @@ const Login = () => {
             }}>
                 <h1 >Login Here</h1>
                 <form className='mt-4' style={{ display: 'inline-block', width: '20rem' }}>
-                    <MDBInput className='mb-4' type='email' id='form2Example1' label='Email address' />
-                    <MDBInput className='mb-4' type='password' id='form2Example2' label='Password' />
+                    <MDBInput className='mb-4' type='email' id='email' name='email' value={input.email} onChange={handleVal} label='Email address' />
+                    <MDBInput className='mb-4' type='password' id='password' name='password' value={input.password} onChange={handleVal} label='Password' />
 
                     <MDBRow className='mb-4'>
                         <MDBCol className='d-flex justify-content-center'>
-                            <MDBCheckbox id='form2Example3' label='Remember me' defaultChecked />
+                            <MDBCheckbox id='rememberMe' label='Remember me' />
                         </MDBCol>
                         <MDBCol>
                             <a href='#!'>Forgot password?</a>
                         </MDBCol>
                     </MDBRow>
 
-                    <MDBBtn type='submit' className='mb-4' block>
+                    <MDBBtn type='submit' className='mb-4' block onClick={handlePrevent}>
                         Sign in
                     </MDBBtn>
 
                     <div className='text-center'>
                         <p>
-                            Don't have account? <a href='/register'>Register</a>
+                            Don't have account? <Link to='/register'>Register</Link>
                         </p>
                         <p>or sign up with:</p>
 

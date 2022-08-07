@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     MDBInput,
     MDBCol,
@@ -7,8 +7,58 @@ import {
     MDBBtn,
 } from 'mdb-react-ui-kit';
 import { Container } from '@mui/system';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
+    const [input, setInput] = useState({
+        fname:"",
+        lname:"",
+        email:"",
+        password:"",
+        cpassword:""
+    })
+    function handleVal(e) {
+       const {name,value} = e.target
+       setInput (()=>{
+        return{
+            ...input,
+            [name]:value
+        }
+
+       })
+    }
+
+    const handlePrevent = (e)=>{
+        e.preventDefault()
+
+        const {fname, lname, email, password, cpassword} = input
+
+        if(fname === ""){
+            alert("Please enter your First Name")
+        }
+        else if(lname === ""){
+            alert("Please enter your Last Name")
+        }
+        else if(email === ""){
+            alert("Please enter your Email")
+        }
+        else if(!email.includes("@")){
+            alert("Please enter your Valid Email Address")
+        }
+        else if(password === ""){
+            alert("Please enter your Password")
+        }
+        else if(password < 7){
+            alert("Please enter your Password")
+        }
+        else if(cpassword !== password){
+            alert("Your Password does not match")
+        }
+        else{
+           alert("User Registered Successfully")
+        }
+        
+    }
     return (
         <>
             <Container style={{
@@ -19,30 +69,28 @@ const Register = () => {
                 <form className='mt-4' style={{ display: 'inline-block', width: '20rem' }}>
                     <MDBRow className='mb-4'>
                         <MDBCol>
-                            <MDBInput id='form3Example1' label='First name' />
+                            <MDBInput id='fnam' name='fname' label='First name' value={input.fname} onChange={handleVal} />
                         </MDBCol>
                         <MDBCol>
-                            <MDBInput id='form3Example2' label='Last name' />
+                            <MDBInput id='lname' name='lname' label='Last name' value={input.lname} onChange={handleVal} />
                         </MDBCol>
                     </MDBRow>
-                    <MDBInput className='mb-4' type='email' id='form2Example1' label='Email address' />
-                    <MDBInput className='mb-4' type='password' id='form2Example2' label='Password' />
+                    <MDBInput className='mb-4' type='email' id='email' name='email' label='Email address' value={input.email} onChange={handleVal}/> 
+                    <MDBInput className='mb-4' type='password' id='password' name='password' label='Password' value={input.password} onChange={handleVal} />
+                    <MDBInput className='mb-4' type='password' id='cpassword' name='cpassword' label='Confirm Password' value={input.cpassword} onChange={handleVal} />
 
                     <MDBRow className='mb-4'>
-                        <MDBCol className='d-flex justify-content-center'>
-                            <MDBCheckbox id='form2Example3' label='Remember me' defaultChecked />
-                        </MDBCol>
-                        <MDBCol>
-                            <a href='#!'>Forgot password?</a>
+                        <MDBCol className='d-flex'>
+                            <MDBCheckbox id='rememberMe' label='Remember me'/>
                         </MDBCol>
                     </MDBRow>
 
-                    <MDBBtn type='submit' className='mb-4' block>
+                    <MDBBtn type='submit' className='mb-4' block onClick={handlePrevent}>
                         Sign up
                     </MDBBtn>
 
                     <p>
-                        Already have account? <a href='/login'>Login</a>
+                        Already have account? <Link to='/login'>Login</Link>
                     </p>
 
 

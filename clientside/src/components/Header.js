@@ -15,7 +15,7 @@ const Header = () => {
                     <MDBContainer fluid>
                         <MDBNavbarBrand href='/home'>
                             <img style={{ marginLeft: '5rem', width: '65px', height: '60px', borderRadius: '3rem' }}
-                                src={logo} alt="Logo" />Hyper Shop</MDBNavbarBrand>
+                                src={logo} alt="Logo" /> <small style={{ fontSize: 'xx-large', marginLeft: '1rem', fontFamily: 'emoji' }} >Hyper Shop</small> </MDBNavbarBrand>
                         <Avatar style={{ marginRight: '5rem', backgroundColor: 'rgb(92 92 79)' }}>H</Avatar>
                     </MDBContainer>
                 </MDBNavbar>
