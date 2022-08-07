@@ -4,7 +4,7 @@ const app = express()
 
 
 app.get("/",(req, res)=>{
-    res.status(201).json("server")
+    res.status(201).json("Connection is Successfull")
     
 })
 

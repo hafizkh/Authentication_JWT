@@ -1,8 +1,9 @@
 import app from "./app.js"
+import "dotenv/config"
 
 
-const PORT = 8080
+// const PORT = 8080
 
-app.listen(PORT, ()=>{
-    console.log(`App is up and running on ${PORT}`);
+app.listen(process.env.PORT, ()=>{
+    console.log(`App is up and running on ${process.env.PORT}`);
 })
