@@ -6,20 +6,22 @@ import {
   } from 'mdb-react-ui-kit';
 import logo from '../images/logo.jpg'
 import Avatar from '@mui/material/Avatar';
+import Login from './Login';
 
 
 const Header = () => {
   return (
     <div>
      <>
-      <MDBNavbar fixed='top' dark bgColor='dark'>
+      <MDBNavbar sticky dark bgColor='dark'>
         <MDBContainer fluid>
-          <MDBNavbarBrand to='/'> <img style={{marginLeft: '5rem', width: '4vw', height: '19vh', borderRadius: '3rem'}} src= {logo} alt="Logo"/>Hyper Shop</MDBNavbarBrand>
-          <Avatar style={{marginRight: '5rem'}}>H</Avatar>
+          <MDBNavbarBrand to='/'> <img style={{marginLeft: '5rem', width: '65px', height: '60px', borderRadius: '3rem'}} 
+          src= {logo} alt="Logo"/>Hyper Shop</MDBNavbarBrand>
+          <Avatar style={{marginRight: '5rem', backgroundColor: 'rgb(92 92 79)'}}>H</Avatar>
         </MDBContainer>
       </MDBNavbar>
+    <Login />
     </>
-
     </div>
   )
 }
