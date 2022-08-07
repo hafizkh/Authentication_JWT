@@ -57,7 +57,7 @@ const Login = () => {
             }}>
                 <h1 >Login Here</h1>
                 <form className='mt-4' style={{ display: 'inline-block', width: '20rem' }}>
-                    <MDBInput className='mb-4' type='email' id='email' name='email' value={input.email} onChange={handleVal} label='Email address' />
+                    <MDBInput className='mb-4' type='email' id='email' name='email' value={input.email} onChange={handleVal} label='Email address'/>
                     <MDBInput className='mb-4' type='password' id='password' name='password' value={input.password} onChange={handleVal} label='Password' />
 
                     <MDBRow className='mb-4'>
