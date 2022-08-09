@@ -5,7 +5,7 @@ import mongoose from 'mongoose'
 
 mongoose
     .connect(
-        `mongodb+srv://${process.env.USER_NAME}:${process.env.PASSWORD}@cluster0.lpq8g.mongodb.net/?retryWrites=true&w=majority`
+        `mongodb+srv://${process.env.USER_NAME}:${process.env.PASSWORD}@cluster0.lpq8g.mongodb.net/Authentication_JWT?retryWrites=true&w=majority`
     )
     .then(() => {
         app.listen(process.env.PORT, () => {

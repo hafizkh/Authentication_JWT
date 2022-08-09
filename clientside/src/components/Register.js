@@ -28,7 +28,7 @@ const Register = () => {
        })
     }
 
-    const handlePrevent = (e)=>{
+    const handlePrevent = async(e)=>{
         e.preventDefault()
 
         const {fname, lname, email, password, cpassword} = input
@@ -55,7 +55,26 @@ const Register = () => {
             alert("Your Password does not match")
         }
         else{
-           alert("User Registered Successfully")
+        //    alert("User Registered Successfully")
+
+        const userData = await fetch("http://localhost:8080/register", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body:JSON.stringify({
+                fname, lname, email, password, cpassword
+            })
+        })
+
+        const data = await userData.json()
+        // console.log(data.status)
+
+        if(data.status === 201){
+            alert("User has been registered")
+            setInput({...input,fname:"", lname:"", email:"", password:"", cpassword:"" })
+        }
+
         }
         
     }
