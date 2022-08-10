@@ -1,6 +1,7 @@
 import express, { Router } from "express";
 import userModel from "../models/userSchema.js";
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
+import userAuth from "../middleware/userAuth.js";
 
 const userRoute = Router()
 
@@ -64,11 +65,31 @@ userRoute.post("/login", async (req, res) => {
                     httpOnly:true
                     
                 })
+
+                const result = {
+                    userVarify,
+                    token
+                }
+                res.status(201).json({status:201, result})
             }
         }
     } catch (error) {
+        res.status(401).json({message: error})
 
     }
 })
+
+// UserValidity check Route
+userRoute.get("/userValidity",userAuth, async(req, res)=>{
+    // console.log("User Authenticate completed")
+    try {
+        const checkUserValidity = await userModel.findOne({_id:req.userId})
+        res.status(201).json({checkUserValidity})
+    } catch (error) {
+        res.status(401).json({message: error})        
+    }
+
+})
+
 
 export default userRoute

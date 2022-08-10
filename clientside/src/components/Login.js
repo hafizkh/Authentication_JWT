@@ -59,7 +59,7 @@ const Login = () => {
             // console.log(data)
 
             if (data.status === 201) {
-                alert("User has been LoggedIn")
+                localStorage.setItem("usersdatatoken", data.result.token)
                 setInput({ ...input, email: "", password: ""})
             }
 
@@ -69,7 +69,7 @@ const Login = () => {
 return (
     <>
         <Container style={{
-            margin: '50px auto', maxWidth: '800px', minHeight: '480px',
+            margin: '50px auto', maxWidth: '800px', minHeight: '480px', backgroundColor: 'rgb(243 243 243)',
             boxShadow: '0 5px 15px 0 rgb(96 100 96 / 30%)', borderRadius: '36px', alighItems: 'center', paddingTop: '18px'
         }}>
             <h1 >Login Here</h1>

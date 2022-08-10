@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 import validator from "validator";
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import jwt from "jsonwebtoken";
+import 'dotenv/config'
 
-const secretKey = "Thisisanewsecretkeytoverifyuserr"
+const secretKey = process.env.SECRET_KEY
 
 const userSchema = new mongoose.Schema({
     fname: {
@@ -50,8 +51,11 @@ const userSchema = new mongoose.Schema({
 // Hashing password for user's data
 
 userSchema.pre("save", async function(next){
-    this.password = await bcrypt.hash(this.password, 10)
-    this.cpassword = await bcrypt.hash(this.cpassword, 10)
+    if(this.isModified("password")){
+
+        this.password = await bcrypt.hash(this.password, 10)
+        this.cpassword = await bcrypt.hash(this.cpassword, 10)
+    }
 
     next()
 })
