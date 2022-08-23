@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose,{Schema} from "mongoose";
 import validator from "validator";
 import bcrypt from 'bcryptjs'
 import jwt from "jsonwebtoken";
@@ -6,7 +6,7 @@ import 'dotenv/config'
 
 const secretKey = process.env.SECRET_KEY
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
     fname: {
         type: String,
         required: true
@@ -76,6 +76,6 @@ userSchema.methods.tokenGenerateAuth = async function () {
     }
 }
 
-const userModel = new mongoose.model("users", userSchema)
+const User = new mongoose.model("User", userSchema)
 
-export default userModel
+export default User
